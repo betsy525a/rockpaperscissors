@@ -10,50 +10,70 @@
 // DOCUMENT READY FUNCTION BELOW
 
 var userInput;
+var userWinCount = 0;
+var computerWinCount = 0;
 
-var choices = ["rock", "paper", "scissors"];
+$("#uWins").text(userWinCount);
+$("#cWins").text(computerWinCount);
+
+var choices = ["Rock", "Paper", "Scissors"];
 
 $("button").click(function() {
-    userInput = $("#input").val();
+    var preUserInput = $("#input").val();
+    userInput = preUserInput.toUpperCase();
     $("#input").val("");
-    $("#userChoice").text(userInput);
+    $("#userChoice").text(preUserInput);
     
     var computerPick = choices[Math.floor(Math.random() * choices.length)];
     $("#computerChoice").text(computerPick);
     
-    if(userInput==="paper" && computerPick==="paper"){
+    
+    if (userInput != "ROCK" || userInput != "PAPER" || userInput != "SCISSORS") {
+        $("#result").text("Enter a valid answer.");
+    }
+    
+    if(userInput==="PAPER" && computerPick==="Paper"){
         $("#result").text("Draw!");
     }
     
-    if(userInput==="paper" && computerPick==="scissors"){
+    if(userInput==="PAPER" && computerPick==="Scissors"){
         $("#result").text("The computer wins!");
+        computerWinCount++;
     }
     
-    if(userInput==="paper" && computerPick==="rock"){
+    if(userInput==="PAPER" && computerPick==="Rock"){
         $("#result").text("You win!");
+        userWinCount++;
     }
     
-    if(userInput==="scissors" && computerPick==="scissors"){
+    if(userInput==="SCISSORS" && computerPick==="Scissors"){
         $("#result").text("Draw!");
     }
     
-    if(userInput==="scissors" && computerPick==="rock"){
+    if(userInput==="SCISSORS" && computerPick==="Rock"){
         $("#result").text("The computer wins!");
+        computerWinCount++;
     }
     
-    if(userInput==="scissors" && computerPick==="paper"){
+    if(userInput==="SCISSORS" && computerPick==="Paper"){
         $("#result").text("You win!");
+        userWinCount++;
     }
     
-    if(userInput==="rock" && computerPick==="rock"){
+    if(userInput==="ROCK" && computerPick==="Rock"){
         $("#result").text("Draw!");
     }
     
-    if(userInput==="rock" && computerPick==="paper"){
+    if(userInput==="ROCK" && computerPick==="Paper"){
         $("#result").text("The computer wins!");
+        computerWinCount++;
     }
     
-    if(userInput==="rock" && computerPick==="scissors"){
+    if(userInput==="ROCK" && computerPick==="Scissors"){
         $("#result").text("You win!");
+        userWinCount++;
     }
+    
+    $("#uWins").text(userWinCount);
+    $("#cWins").text(computerWinCount);
 });
